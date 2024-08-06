@@ -1,8 +1,7 @@
 import Els from "../core";
 
+// обработчик событий
 Els.prototype.watch = function(event, callback, ...options) {
-    
-
     for (let i = 0; i < this.length; i++) {
         if (event && callback && options.length === 0) {
             this[i].addEventListener(event, callback);
@@ -16,6 +15,7 @@ Els.prototype.watch = function(event, callback, ...options) {
     return this;
 }
 
+// удаление обработчика событий
 Els.prototype.delWatch = function(event, callback) {
     for (let i = 0; i < this.length; i++) {
         this[i].removeEventListener(event, callback);
@@ -24,6 +24,7 @@ Els.prototype.delWatch = function(event, callback) {
     return this;
 }
 
+// событие click и обработчик click
 Els.prototype.click = function(handler) {
     for (let i = 0; i < this.length; i++) {
         if (handler) {
@@ -36,6 +37,7 @@ Els.prototype.click = function(handler) {
     return this; 
 }
 
+// обработчик submit
 Els.prototype.submit = function(request) {
     for (let i = 0; i < this.length; i++) {
         if (request) {
@@ -51,6 +53,7 @@ Els.prototype.submit = function(request) {
     return this;
 }
 
+// обработчик input
 Els.prototype.input = function(enter) {
     for (let i = 0; i < this.length; i++) {
         if (enter) {

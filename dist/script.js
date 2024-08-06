@@ -50,6 +50,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_handlers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/handlers */ "./src/js/lib/modules/handlers.js");
 /* harmony import */ var _modules_attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/attributes */ "./src/js/lib/modules/attributes.js");
 /* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
+/* harmony import */ var _modules_effects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/effects */ "./src/js/lib/modules/effects.js");
+
 
 
 
@@ -69,6 +71,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
+
+// функция innerHTML
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.html = function (content) {
   for (let i = 0; i < this.length; i++) {
     if (content) {
@@ -78,6 +82,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.html = function (content
     }
   }
 };
+
+// функция поиска по номеру
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.num = function (i) {
   const elem = this[i],
     length = Object.keys(this).length;
@@ -88,6 +94,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.num = function (i) {
   this.length = 1;
   return this;
 };
+
+// функция определения индекса элемента
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.index = function () {
   const parent = this[0].parentNode,
     childs = [...parent.children];
@@ -96,6 +104,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.index = function () {
   };
   return childs.findIndex(findMyIndex);
 };
+
+// функция поиска элементов по селектору
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.find = function (selector) {
   let numberOfItems = 0,
     counter = 0;
@@ -116,6 +126,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.find = function (selecto
   }
   return this;
 };
+
+// функция поиска ближайшего селектра по родителям => closest
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.findCst = function (selector) {
   let counter = 0;
   for (let i = 0; i < this.length; i++) {
@@ -132,6 +144,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.findCst = function (sele
   console.log(this);
   return this;
 };
+
+// функция поиска соседних элементов
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
   let numberOfItems = 0,
     counter = 0;
@@ -164,6 +178,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
+
+// функция назначения или изменения аттрибута
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.setAtr = function (attribute, value) {
   for (let i = 0; i < this.length; i++) {
     if (attribute && value) {
@@ -175,6 +191,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.setAtr = function (attri
   }
   return this;
 };
+
+// функция получения аттрибута
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.getAtr = function (attribute) {
   // доработать в соответствии с документацией => должно быть значение, плюс дополнительно можно получить доп свойства
   if (!attribute) throw new Error("Method hasn't parametrs. The function must contain a parameter 'attribute'");
@@ -194,6 +212,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.getAtr = function (attri
   }
   return this;
 };
+
+// функция удаления аттрибута
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.delAtr = function (attribute, value) {
   if (!attribute) throw new Error("Method hasn't parametrs. The function must contain a parameter 'attribute'");
   for (let i = 0; i < this.length; i++) {
@@ -213,6 +233,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.delAtr = function (attri
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
+
+// функция добавления класса
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.newClass = function (...classNames) {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].classList) {
@@ -222,6 +244,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.newClass = function (...
   }
   return this;
 };
+
+// функция удаления класса
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.delClass = function (...classNames) {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].classList) {
@@ -234,6 +258,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.delClass = function (...
   }
   return this;
 };
+
+// функция изменения класса
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.changeClass = function (className) {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].classList) {
@@ -243,6 +269,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.changeClass = function (
   }
   return this;
 };
+
+// функция поиска наличия класса
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.has = function (className) {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].classList) {
@@ -264,6 +292,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.has = function (classNam
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
+
+// функция демонстрации элемента
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.show = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) {
@@ -273,6 +303,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.show = function () {
   }
   return this;
 };
+
+// функция скрытия элемента
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.hide = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) {
@@ -282,6 +314,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.hide = function () {
   }
   return this;
 };
+
+// функция изменения свойства display
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.changeDsp = function () {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) {
@@ -298,6 +332,85 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.changeDsp = function () 
 
 /***/ }),
 
+/***/ "./src/js/lib/modules/effects.js":
+/*!***************************************!*\
+  !*** ./src/js/lib/modules/effects.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+// техническая функция анимации
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.animate = function (dur, cb, fin) {
+  let timeStart;
+  function _animateOverTime(time) {
+    if (!timeStart) {
+      timeStart = time;
+    }
+    let timeElapsed = time - timeStart,
+      complaction = Math.min(timeElapsed / dur, 1);
+    cb(complaction);
+    if (timeElapsed < dur) {
+      requestAnimationFrame(_animateOverTime);
+    } else {
+      if (typeof fin === 'function') fin();
+    }
+  }
+  return _animateOverTime;
+};
+
+// функция появление элемента
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.appear = function (dur, display, fin) {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = display || 'block';
+    const _appear = complaction => {
+      this[i].style.opacity = complaction;
+    };
+    const anim = this.animate(dur, _appear, fin);
+    requestAnimationFrame(anim);
+  }
+  return this;
+};
+
+// функция исчезновения элемента
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.disappear = function (dur, fin) {
+  for (let i = 0; i < this.length; i++) {
+    const _disappear = complaction => {
+      this[i].style.opacity = 1 - complaction;
+      if (complaction === 1) this[i].style.display = 'none';
+    };
+    const anim = this.animate(dur, _disappear, fin);
+    requestAnimationFrame(anim);
+  }
+  return this;
+};
+
+// функция изменения состояния видимости элемента
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.appearToggle = function (dur, display, fin) {
+  for (let i = 0; i < this.length; i++) {
+    if (window.getComputedStyle(this[i]).display === 'none') {
+      this[i].style.display = display || 'block';
+      const _appear = complaction => {
+        this[i].style.opacity = complaction;
+      };
+      const anim = this.animate(dur, _appear, fin);
+      requestAnimationFrame(anim);
+    } else {
+      const _disappear = complaction => {
+        this[i].style.opacity = 1 - complaction;
+        if (complaction === 1) this[i].style.display = 'none';
+      };
+      const anim = this.animate(dur, _disappear, fin);
+      requestAnimationFrame(anim);
+    }
+  }
+  return this;
+};
+
+/***/ }),
+
 /***/ "./src/js/lib/modules/handlers.js":
 /*!****************************************!*\
   !*** ./src/js/lib/modules/handlers.js ***!
@@ -307,6 +420,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.changeDsp = function () 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
+
+// обработчик событий
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.watch = function (event, callback, ...options) {
   for (let i = 0; i < this.length; i++) {
     if (event && callback && options.length === 0) {
@@ -319,12 +434,16 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.watch = function (event,
   }
   return this;
 };
+
+// удаление обработчика событий
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.delWatch = function (event, callback) {
   for (let i = 0; i < this.length; i++) {
     this[i].removeEventListener(event, callback);
   }
   return this;
 };
+
+// событие click и обработчик click
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handler) {
   for (let i = 0; i < this.length; i++) {
     if (handler) {
@@ -335,6 +454,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handle
   }
   return this;
 };
+
+// обработчик submit
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.submit = function (request) {
   for (let i = 0; i < this.length; i++) {
     if (request) {
@@ -348,6 +469,8 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.submit = function (reque
   }
   return this;
 };
+
+// обработчик input
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.input = function (enter) {
   for (let i = 0; i < this.length; i++) {
     if (enter) {
@@ -486,6 +609,19 @@ function callback() {
 // console.log( Els('.some').num(0).findCst('.actions'));
 // console.log( Els('.some').num(0).findCst('.findme').newClass('act'));
 // console.log( Els('.iHaveSiblings').siblings());
+
+//effects
+
+//effects
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.effects_btn').click(e => {
+  (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.actions').disappear(1500);
+  setTimeout(() => {
+    (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.actions').appear(1500);
+  }, 3000);
+});
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.effects_two').click(e => {
+  (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.more').appearToggle(2000);
+});
 /******/ })()
 ;
 //# sourceMappingURL=script.js.map

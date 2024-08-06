@@ -1,5 +1,6 @@
 import Els from "../core";
 
+// функция innerHTML
 Els.prototype.html = function(content) {
     for (let i = 0; i < this.length; i++) {
         if (content) {
@@ -10,6 +11,7 @@ Els.prototype.html = function(content) {
     }
 }
 
+// функция поиска по номеру
 Els.prototype.num = function(i) {
     const elem = this[i],
           length = Object.keys(this).length;
@@ -24,6 +26,7 @@ Els.prototype.num = function(i) {
     return this;
 }
 
+// функция определения индекса элемента
 Els.prototype.index = function() {
     const parent = this[0].parentNode,
           childs = [...parent.children];
@@ -35,6 +38,7 @@ Els.prototype.index = function() {
     return childs.findIndex(findMyIndex);
 }
 
+// функция поиска элементов по селектору
 Els.prototype.find = function(selector) {
     let numberOfItems = 0,
         counter = 0;
@@ -65,6 +69,7 @@ Els.prototype.find = function(selector) {
     return this;
 }
 
+// функция поиска ближайшего селектра по родителям => closest
 Els.prototype.findCst = function(selector) {
     let counter = 0;
 
@@ -88,6 +93,7 @@ Els.prototype.findCst = function(selector) {
     return this;
 }
 
+// функция поиска соседних элементов
 Els.prototype.siblings = function() {
     let numberOfItems = 0,
         counter = 0;

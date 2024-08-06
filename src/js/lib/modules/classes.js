@@ -1,5 +1,6 @@
 import Els from '../core';
 
+// функция добавления класса
 Els.prototype.newClass = function(...classNames) {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].classList) {
@@ -12,6 +13,7 @@ Els.prototype.newClass = function(...classNames) {
     return this;
 }
 
+// функция удаления класса
 Els.prototype.delClass = function(...classNames) {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].classList) {
@@ -28,6 +30,7 @@ Els.prototype.delClass = function(...classNames) {
     return this;
 }
 
+// функция изменения класса
 Els.prototype.changeClass = function(className) {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].classList) {
@@ -40,6 +43,7 @@ Els.prototype.changeClass = function(className) {
     return this;
 }
 
+// функция поиска наличия класса
 Els.prototype.has = function(className) {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].classList) {

@@ -63,3 +63,20 @@ Els('div').click(function() {
 // console.log( Els('.some').num(0).findCst('.actions'));
 // console.log( Els('.some').num(0).findCst('.findme').newClass('act'));
 // console.log( Els('.iHaveSiblings').siblings());
+
+//effects
+
+//effects
+Els('.effects_btn').click((e) => {
+    Els('.actions').disappear(1500);
+
+    setTimeout(() => {
+        Els('.actions').appear(1500);
+    }, 3000);
+});
+
+Els('.effects_two').click((e) => {
+    Els('.more').appearToggle(2000);
+
+});
+

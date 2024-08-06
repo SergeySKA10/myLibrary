@@ -1,5 +1,6 @@
 import Els from '../core';
 
+// функция демонстрации элемента
 Els.prototype.show = function() {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].style) {
@@ -12,6 +13,7 @@ Els.prototype.show = function() {
     return this;
 }
 
+// функция скрытия элемента
 Els.prototype.hide = function() {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].style) {
@@ -24,6 +26,7 @@ Els.prototype.hide = function() {
     return this;
 }
 
+// функция изменения свойства display
 Els.prototype.changeDsp = function() {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].style) {

@@ -1,5 +1,6 @@
 import Els from "../core";
 
+// функция назначения или изменения аттрибута
 Els.prototype.setAtr = function(attribute, value) {
     for (let i = 0; i < this.length; i++) {
         if (attribute && value) {
@@ -13,6 +14,7 @@ Els.prototype.setAtr = function(attribute, value) {
     return this;
 }
 
+// функция получения аттрибута
 Els.prototype.getAtr = function(attribute) { // доработать в соответствии с документацией => должно быть значение, плюс дополнительно можно получить доп свойства
     if (!attribute) throw new Error("Method hasn't parametrs. The function must contain a parameter 'attribute'");
 
@@ -37,6 +39,7 @@ Els.prototype.getAtr = function(attribute) { // доработать в соот
     return this;
 }
 
+// функция удаления аттрибута
 Els.prototype.delAtr = function(attribute, value) {
     if (!attribute) throw new Error("Method hasn't parametrs. The function must contain a parameter 'attribute'");
     
