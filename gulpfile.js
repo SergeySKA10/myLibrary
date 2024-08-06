@@ -8,8 +8,8 @@ const autoprefixer = require("autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const postcss = require("gulp-postcss");
 
-// const dist = "/Applications/MAMP/htdocs/test"; // Ссылка на вашу папку на локальном сервере
 const dist = "./dist";
+//const dist = '../../../../../../../Program Files/OSPanel/domains/library/'
 
 gulp.task("copy-html", () => {
 	return gulp
