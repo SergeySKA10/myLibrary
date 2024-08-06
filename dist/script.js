@@ -622,6 +622,15 @@ function callback() {
 (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.effects_two').click(e => {
   (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.more').appearToggle(2000);
 });
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#first').click(() => {
+  (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-500').num(0).disappear(2000, () => console.log('Bye'));
+});
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-count="second"]').click(() => {
+  (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-500').num(1).appear(2000);
+});
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#toggle').click(() => {
+  (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-500').appearToggle(2000);
+});
 /******/ })()
 ;
 //# sourceMappingURL=script.js.map

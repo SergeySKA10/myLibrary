@@ -80,3 +80,16 @@ Els('.effects_two').click((e) => {
 
 });
 
+Els('#first').click(() => {
+    Els('.w-500').num(0).disappear(2000, () => console.log('Bye'));
+});
+
+Els('[data-count="second"]').click(() => {
+    Els('.w-500').num(1).appear(2000);
+});
+
+Els('#toggle').click(() => {
+    Els('.w-500').appearToggle(2000);
+});
+
+
