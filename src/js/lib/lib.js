@@ -11,7 +11,6 @@ import './components/modal';
 import './components/tabs';
 import './components/accordion';
 import './components/slider';
-
-
+import './services/services';
 
 export default Els;

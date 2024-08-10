@@ -338,6 +338,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/tabs */ "./src/js/lib/components/tabs.js");
 /* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/accordion */ "./src/js/lib/components/accordion.js");
 /* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/slider */ "./src/js/lib/components/slider.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/services */ "./src/js/lib/services/services.js");
+
 
 
 
@@ -764,6 +766,75 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.input = function (enter)
   return this;
 };
 
+/***/ }),
+
+/***/ "./src/js/lib/services/getData.js":
+/*!****************************************!*\
+  !*** ./src/js/lib/services/getData.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.get = async function (url, dataTypeAnswer = 'json') {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Could not fetch: ${url}, status: ${response.status}`);
+  }
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await response.json();
+    case 'text':
+      return await response.text();
+    case 'blob':
+      return await response.blob();
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/lib/services/postData.js":
+/*!*****************************************!*\
+  !*** ./src/js/lib/services/postData.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.post = async function (url, data, dataTypeAnswer = 'json') {
+  const response = await fetch(url, {
+    method: "POST",
+    body: data
+  });
+  if (!response.ok) {
+    throw new Error(`Could not fetch: ${url}, status: ${response.status}`);
+  }
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await response.json();
+    case 'text':
+      return await response.text();
+    case 'blob':
+      return await response.blob();
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/lib/services/services.js":
+/*!*****************************************!*\
+  !*** ./src/js/lib/services/services.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _getData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getData */ "./src/js/lib/services/getData.js");
+/* harmony import */ var _postData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postData */ "./src/js/lib/services/postData.js");
+
+
+
 /***/ })
 
 /******/ 	});
@@ -932,6 +1003,11 @@ function callback() {
     }
   });
 });
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])().get('https://jsonplaceholder.typicode.com/posts/99').then(res => console.log(res));
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])().post('https://jsonplaceholder.typicode.com/posts', {
+  id: 101,
+  name: 'Vasa'
+}).then(res => console.log(res));
 /******/ })()
 ;
 //# sourceMappingURL=script.js.map

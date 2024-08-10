@@ -122,3 +122,9 @@ Els('#trigger').click(() => {
         }
     });
 });
+
+Els().get('https://jsonplaceholder.typicode.com/posts/99')
+    .then(res => console.log(res));
+
+Els().post('https://jsonplaceholder.typicode.com/posts', {id:101, name: 'Vasa'})
+    .then(res => console.log(res));
