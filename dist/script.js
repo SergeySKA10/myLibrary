@@ -2,6 +2,287 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/lib/components/accordion.js":
+/*!********************************************!*\
+  !*** ./src/js/lib/components/accordion.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.accordion = function (headActive = 'accordion-head--active', contentActive = 'accordion-content--active', paddings = 40) {
+  for (let i = 0; i < this.length; i++) {
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(() => {
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).changeClass(headActive);
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i].nextElementSibling).changeClass(contentActive);
+      if (this[i].classList.contains(headActive)) {
+        this[i].nextElementSibling.style.maxHeight = this[i].nextElementSibling.scrollHeight + paddings + 'px';
+      } else {
+        this[i].nextElementSibling.style.maxHeight = '0px';
+      }
+    });
+  }
+};
+(0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.accordion-head').accordion();
+
+// Els.prototype.createAccordion = function() {
+
+// }
+
+/***/ }),
+
+/***/ "./src/js/lib/components/card.js":
+/*!***************************************!*\
+  !*** ./src/js/lib/components/card.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.createCard = function (parentSelector, src, alt, title, text, link, id, classes, attributes, linkText) {
+  const card = document.createElement('div');
+  (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(card).newClass('card');
+  (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(card).html(`
+        <img class="card-img" src="${src}" alt="${alt}">
+        <div class="card-body">
+            <div class="card-title">${title}</div>
+            <p class="card-text">${text}</p>
+            <a href=">${link}" id=">${id}" class="${classes}" ${attributes.join('')}>${linkText}</a>
+        </div>
+    `);
+  document.querySelector(parentSelector).append(card);
+};
+
+/***/ }),
+
+/***/ "./src/js/lib/components/dropdown.js":
+/*!*******************************************!*\
+  !*** ./src/js/lib/components/dropdown.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.dropdown = function () {
+  for (let i = 0; i < this.length; i++) {
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(() => {
+      const idMenu = (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).getAtr('id');
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(`[data-toggle-id="${idMenu}"]`).changeDsp();
+    });
+  }
+};
+
+// Els.prototype.createDropdown = function() {
+
+// }
+
+/***/ }),
+
+/***/ "./src/js/lib/components/modal.js":
+/*!****************************************!*\
+  !*** ./src/js/lib/components/modal.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+// функция открытия и закрытия модального окна
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.modal = function (created) {
+  for (let i = 0; i < this.length; i++) {
+    const idModal = (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).getAtr('data-target');
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(e => {
+      e.preventDefault();
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(idModal).appear(500);
+      document.body.style.overflow = 'hidden';
+    });
+    const closeElems = document.querySelectorAll(`${idModal} [data-close]`);
+    closeElems.forEach(elem => {
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(elem).click(() => {
+        (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(idModal).disappear(500);
+        document.body.style.overflow = '';
+
+        // если модальное окно создано с помощью JS - оно удаляется
+        if (created) {
+          document.querySelector(idModal).remove();
+        }
+      });
+    });
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(idModal).click(e => {
+      if (e.target && e.target.classList.contains('modal')) {
+        (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(idModal).disappear(500);
+        document.body.style.overflow = '';
+
+        // если модальное окно создано с помощью JS - оно удаляется
+        if (created) {
+          document.querySelector(idModal).remove();
+        }
+      }
+    });
+  }
+};
+(0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-toggle="modal"]').modal();
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.createModal = function ({
+  text,
+  btns
+} = {}) {
+  for (let i = 0; i < this.length; i++) {
+    const buttons = [],
+      modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.setAttribute('id', this[i].getAttribute('data-target').slice(1));
+    for (let j = 0; j < btns.count; j++) {
+      let btn = document.createElement('button');
+      btn.classList.add('btn', ...btns.settings[j][1]);
+      btn.textContent = btns.settings[j][0];
+      if (btns.settings[j][2]) {
+        btn.setAttribute('data-close', 'true');
+      }
+      if (btns.settings[j][3] && typeof btns.settings[j][3] === 'function') {
+        btn.addEventListener('click', btns.settings[j][3]);
+      }
+      buttons.push(btn);
+    }
+    modal.innerHTML = `
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="close" data-close>
+                        <span>&times;</span>
+                    </button>
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            ${text.title}
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        ${text.descr}
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        `;
+    modal.querySelector('.modal-footer').append(...buttons);
+    document.body.append(modal);
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).modal(true);
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i].getAttribute('data-target')).appear(500); // появление подложки с модальным окном ('.modal')
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/lib/components/slider.js":
+/*!*****************************************!*\
+  !*** ./src/js/lib/components/slider.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.slider = function () {
+  for (let i = 0; i < this.length; i++) {
+    const width = window.getComputedStyle(this[i].querySelector('.carousel-inner')).width,
+      sliderId = this[i].getAttribute('id'),
+      slides = this[i].querySelectorAll('.carousel-item'),
+      slidesField = this[i].querySelector('.carousel-slides'),
+      dots = this[i].querySelectorAll('.carousel-indicators li');
+    let offset = 0,
+      slideIndex = 0;
+
+    // установка ширины блока слайдов
+    slidesField.style.width = `${slides.length * 100}%`;
+
+    // установка ширины самих слайдов
+    slides.forEach(slide => {
+      slide.style.width = width;
+    });
+
+    //обработчик на next
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i].querySelector('[data-slide="next"]')).click(e => {
+      e.preventDefault();
+      if (offset == +width.replace(/\D/g, '') * (slides.length - 1)) {
+        offset = 0;
+      } else {
+        offset += +width.replace(/\D/g, '');
+      }
+      slidesField.style.transform = `translateX(-${offset}px)`;
+      if (slideIndex === slides.length - 1) {
+        slideIndex = 0;
+      } else {
+        slideIndex++;
+      }
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[slideIndex].classList.add('active');
+    });
+
+    //обработчик на prev
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i].querySelector('[data-slide="prev"]')).click(e => {
+      e.preventDefault();
+      if (offset === 0) {
+        offset = +width.replace(/\D/g, '') * (slides.length - 1);
+      } else {
+        offset -= +width.replace(/\D/g, '');
+      }
+      slidesField.style.transform = `translateX(-${offset}px)`;
+      if (slideIndex === 0) {
+        slideIndex = slides.length - 1;
+      } else {
+        slideIndex--;
+      }
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[slideIndex].classList.add('active');
+    });
+
+    //обработчик на кнопки
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(`#${sliderId} .carousel-indicators li`).click(e => {
+      const slideTo = e.target.getAttribute('data-slide-to');
+      slideIndex = slideTo;
+      offset = +width.replace(/\D/g, '') * slideTo;
+      slidesField.style.transform = `translateX(-${offset}px)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[slideIndex].classList.add('active');
+    });
+  }
+};
+(0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.carousel').slider();
+
+/***/ }),
+
+/***/ "./src/js/lib/components/tabs.js":
+/*!***************************************!*\
+  !*** ./src/js/lib/components/tabs.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.tab = function () {
+  for (let i = 0; i < this.length; i++) {
+    (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(() => {
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).newClass('tab-item--active') // добавляем элементу - триггеру класс active
+      .siblings() // находим соседние элементы - триггеры
+      .delClass('tab-item--active') // удаляем у соседних элементов - триггеров класс active
+      .findCst('.tab') // находим главный блок табов
+      .find('.tab-content') // находим все элементы с контентом
+      .delClass('tab-content--active') // удаляем у всех элементов с контентом класс active
+      .num((0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).index()) // находим нужный элемент с контентом по индексу
+      .newClass('tab-content--active'); // добавляем у элемента с контентом класс active
+    });
+  }
+};
+(0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-tabpanel] .tab-item').tab();
+
+// Els.prototype.createTab = function() {
+
+// }
+
+/***/ }),
+
 /***/ "./src/js/lib/core.js":
 /*!****************************!*\
   !*** ./src/js/lib/core.js ***!
@@ -51,6 +332,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_attributes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/attributes */ "./src/js/lib/modules/attributes.js");
 /* harmony import */ var _modules_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/actions */ "./src/js/lib/modules/actions.js");
 /* harmony import */ var _modules_effects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/effects */ "./src/js/lib/modules/effects.js");
+/* harmony import */ var _components_dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/dropdown */ "./src/js/lib/components/dropdown.js");
+/* harmony import */ var _components_card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/card */ "./src/js/lib/components/card.js");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/modal */ "./src/js/lib/components/modal.js");
+/* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/tabs */ "./src/js/lib/components/tabs.js");
+/* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/accordion */ "./src/js/lib/components/accordion.js");
+/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/slider */ "./src/js/lib/components/slider.js");
+
+
+
+
+
+
 
 
 
@@ -141,7 +434,6 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.findCst = function (sele
   for (; counter < objLength; counter++) {
     delete this[counter];
   }
-  console.log(this);
   return this;
 };
 
@@ -316,13 +608,13 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.hide = function () {
 };
 
 // функция изменения свойства display
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.changeDsp = function () {
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.changeDsp = function (display = 'block') {
   for (let i = 0; i < this.length; i++) {
     if (!this[i].style) {
       continue;
     }
-    if (this[i].style.display === 'none') {
-      this[i].style.display = '';
+    if (window.getComputedStyle(this[i]).display === 'none') {
+      this[i].style.display = display;
     } else {
       this[i].style.display = 'none';
     }
@@ -391,19 +683,9 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.disappear = function (du
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.appearToggle = function (dur, display, fin) {
   for (let i = 0; i < this.length; i++) {
     if (window.getComputedStyle(this[i]).display === 'none') {
-      this[i].style.display = display || 'block';
-      const _appear = complaction => {
-        this[i].style.opacity = complaction;
-      };
-      const anim = this.animate(dur, _appear, fin);
-      requestAnimationFrame(anim);
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).appear(dur, display, fin);
     } else {
-      const _disappear = complaction => {
-        this[i].style.opacity = 1 - complaction;
-        if (complaction === 1) this[i].style.display = 'none';
-      };
-      const anim = this.animate(dur, _disappear, fin);
-      requestAnimationFrame(anim);
+      (0,_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).disappear(dur, fin);
     }
   }
   return this;
@@ -601,9 +883,10 @@ function callback() {
 
 // console.log(Els('div').num(3));
 (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').num(3).changeDsp();
-(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').click(function () {
-  console.log((0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])(this).index());
-});
+
+// Els('div').click(function() {
+//     console.log( Els(this).index() );
+// });
 
 // console.log( Els('section').num(1).find('.more') );
 // console.log( Els('.some').num(0).findCst('.actions'));
@@ -630,6 +913,24 @@ function callback() {
 });
 (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#toggle').click(() => {
   (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-500').appearToggle(2000);
+});
+
+// components
+
+//dropdown
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.dropdown-toggle').dropdown();
+//modal
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').click(() => {
+  (0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').createModal({
+    text: {
+      title: "Create Modal",
+      descr: "Modal Window create with help JS"
+    },
+    btns: {
+      count: 2,
+      settings: [['Close Modal', ['btn-danger', 'mr10'], true], ['Callback', ['btn-success'], false, () => alert('Hello World')]]
+    }
+  });
 });
 /******/ })()
 ;

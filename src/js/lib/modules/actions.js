@@ -89,7 +89,6 @@ Els.prototype.findCst = function(selector) {
         delete this[counter];
     }
 
-    console.log(this);
     return this;
 }
 

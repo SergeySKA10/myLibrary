@@ -27,13 +27,13 @@ Els.prototype.hide = function() {
 }
 
 // функция изменения свойства display
-Els.prototype.changeDsp = function() {
+Els.prototype.changeDsp = function(display = 'block') {
     for (let i = 0; i < this.length; i++) {
         if (!this[i].style) {
             continue;
         }
-        if (this[i].style.display === 'none') {
-            this[i].style.display = '';
+        if (window.getComputedStyle(this[i]).display === 'none') {
+            this[i].style.display = display;
         } else {
             this[i].style.display = 'none';
         }

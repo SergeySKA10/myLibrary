@@ -55,9 +55,9 @@ Els('.submit').watch('submit', () => { // убрать перезагрузку 
 // console.log(Els('div').num(3));
 Els('div').num(3).changeDsp();
 
-Els('div').click(function() {
-    console.log( Els(this).index() );
-});
+// Els('div').click(function() {
+//     console.log( Els(this).index() );
+// });
 
 // console.log( Els('section').num(1).find('.more') );
 // console.log( Els('.some').num(0).findCst('.actions'));
@@ -93,3 +93,32 @@ Els('#toggle').click(() => {
 });
 
 
+// components
+
+//dropdown
+Els('.dropdown-toggle').dropdown();
+//modal
+Els('#trigger').click(() => {
+    Els('#trigger').createModal({
+        text: {
+            title: "Create Modal",
+            descr: "Modal Window create with help JS"
+        },
+        btns: {
+            count: 2,
+            settings:[
+                [
+                    'Close Modal',
+                    ['btn-danger', 'mr10'], 
+                    true
+                ],
+                [
+                    'Callback', 
+                    ['btn-success'], 
+                    false,
+                    () => alert('Hello World')
+                ],
+            ]
+        }
+    });
+});

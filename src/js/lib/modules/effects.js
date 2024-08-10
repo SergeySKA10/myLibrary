@@ -62,24 +62,9 @@ Els.prototype.disappear = function(dur, fin) {
 Els.prototype.appearToggle = function(dur, display, fin) {
     for (let i = 0; i < this.length; i++) {
         if (window.getComputedStyle(this[i]).display === 'none') {
-            this[i].style.display = display || 'block';
-
-            const _appear = (complaction) => {
-                this[i].style.opacity = complaction;
-            }
-
-            const anim = this.animate(dur, _appear, fin);
-
-            requestAnimationFrame(anim);
+            Els(this[i]).appear(dur,display, fin);
         } else {
-            const _disappear = (complaction) => {
-                this[i].style.opacity = 1 - complaction;
-                if (complaction === 1) this[i].style.display = 'none';
-            }
-    
-            const anim = this.animate(dur, _disappear, fin);
-    
-            requestAnimationFrame(anim);
+            Els(this[i]).disappear(dur, fin);
         }
     }
 
